@@ -2,6 +2,7 @@ import threading
 import time
 from pynput.mouse import Controller
 
+
 class ClickMouse(threading.Thread):
     def __init__(self, outterloop, innerloop, init_delay, proc_delay, button):
         super(ClickMouse, self).__init__()
@@ -33,7 +34,7 @@ class ClickMouse(threading.Thread):
             i = 0
             while self.running and (i < l):
                 out_pos = self.outterloop[i]
-                self.mouse.position(out_pos)
+                self.mouse.position = out_pos
                 time.sleep(.200)
                 self.mouse.click(self.button)
                 time.sleep(self.proc_delay)
@@ -42,7 +43,7 @@ class ClickMouse(threading.Thread):
                 j = 0
                 while self.running and (j < l2):
                     in_pos = self.innerloop[j]
-                    self.mouse.position(in_pos)
+                    self.mouse.position = in_pos
                     time.sleep(.200)
                     self.mouse.click(self.button)
                     time.sleep(self.proc_delay)
